@@ -122,7 +122,35 @@ class _PageQuizzState extends State<PageQuizz> {
     );
   }
 
-  void questionSuivante() {
+  Future<void> alerte() async {
+    return showDialog(context: context,
+      barrierDismissible: false,
+      builder: (BuildContext buildContext) {
+        return AlertDialog(
+          title: CustomText("C'est fini", color: Colors.blue, factor: 1.25,),
+          contentPadding: const EdgeInsets.all(10.0),
+          content: CustomText("Votre score: $score / $index", color: Colors.grey[900],),
+          actions: <Widget>[
+            TextButton(
+              onPressed: (() {
+                Navigator.pop(buildContext);
+                Navigator.pop(context);
+              }),
+              child: CustomText("Ok", factor: 1.25, color: Colors.blue,))
+          ]
+        );
+      }
+    );
+  }
 
+  void questionSuivante() {
+    if (index < listeQuestions.length - 1) {
+      index++;
+      setState(() {
+        question = listeQuestions[index];
+      });
+    } else {
+      alerte();
+    }
   }
 }
