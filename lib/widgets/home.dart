@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quizzflut/widgets/custom_text.dart';
+import 'package:quizzflut/widgets/page_quizz.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -37,7 +38,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 primary: Colors.blue,
               ),
               onPressed: () {
-
+                Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+                  return const PageQuizz();
+                }));
               },
               child: CustomText('Commencer le quiz', factor: 1.5),
             )
